@@ -1,0 +1,54 @@
+package com.kh.event.model.part02_howToUse;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class B_OtherClassTest extends JFrame{
+	
+	private JButton btn;
+	private JLabel label;
+	
+	public B_OtherClassTest() {
+		this.setTitle("Other Class test");
+		this.setSize(300, 200);
+		
+		JPanel panel = new JPanel();
+		btn = new JButton("버튼을 눌러보세요");
+		label = new JLabel("아직 버튼이 눌려지지 않음");
+		
+		btn.addActionListener(new MyEvent(btn,label));
+		
+		panel.add(btn);
+		panel.add(label);
+		
+		this.add(panel);
+		
+		this.setVisible(true);this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}
+class MyEvent implements ActionListener{
+	
+	private JButton btn;
+	private JLabel label;
+	
+	public MyEvent(JButton btn, JLabel label) {
+		this.btn=btn;
+		this.label=label;
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btn) {
+			label.setText("드디어 버튼이 눌림");
+		}
+	}
+}
+/*class Run{
+	public static void main(String[] args) {
+		new B_OtherClassTest();
+	}
+}*/
